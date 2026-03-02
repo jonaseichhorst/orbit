@@ -168,6 +168,24 @@ function renderCanvas() {
   `;
 
   grid.append(companyCard);
+  ui.canvasView.innerHTML = '';
+  const grid = document.createElement('div');
+  grid.className = 'canvas-grid';
+  for (const p of projects) {
+    const card = document.createElement('article');
+    card.className = 'canvas-card';
+    const list = state.tasks.filter(t => t.nodeId === node.id && t.projectId === p.id && !t.parentId).slice(0, 7)
+      .map(t => `<li>${renderMarkdownInline(t.text)}${t.dueDate ? ` <small>(${t.dueDate})</small>` : ''}</li>`)
+      .join('');
+    card.innerHTML = `<h4>${p.name}</h4><ul>${list || '<li>No tasks yet</li>'}</ul>`;
+    grid.append(card);
+  }
+  if (!projects.length) {
+    const card = document.createElement('article');
+    card.className = 'canvas-card';
+    card.innerHTML = '<h4>No projects</h4><p>Create a project to get started.</p>';
+    grid.append(card);
+  }
   ui.canvasView.append(grid);
 }
 
