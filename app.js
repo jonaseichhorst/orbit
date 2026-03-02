@@ -129,6 +129,45 @@ function renderTasks() {
 function renderCanvas() {
   const node = activeNode();
   const projects = state.projects.filter(p => p.nodeId === node.id && !p.archived);
+  const nodeLevelTasks = state.tasks.filter(t => t.nodeId === node.id && !t.projectId && !t.parentId);
+  ui.canvasView.innerHTML = '';
+  const grid = document.createElement('div');
+  grid.className = 'canvas-grid';
+
+  const companyCard = document.createElement('article');
+  companyCard.className = 'canvas-card canvas-company-card';
+
+  const nodeTasksList = nodeLevelTasks
+    .map(t => `<li>${renderMarkdownInline(t.text)}${t.dueDate ? ` <small>(${t.dueDate})</small>` : ''}</li>`)
+    .join('');
+
+  const projectSections = projects.map((project) => {
+    const projectTasks = state.tasks
+      .filter(t => t.nodeId === node.id && t.projectId === project.id && !t.parentId)
+      .map(t => `<li>${renderMarkdownInline(t.text)}${t.dueDate ? ` <small>(${t.dueDate})</small>` : ''}</li>`)
+      .join('');
+
+    return `
+      <section class="project-container">
+        <h5>${project.name}</h5>
+        <ul>${projectTasks || '<li>No tasks yet</li>'}</ul>
+      </section>
+    `;
+  }).join('');
+
+  companyCard.innerHTML = `
+    <h4>${node.name}</h4>
+    <section class="company-tasks">
+      <h5>Company tasks</h5>
+      <ul>${nodeTasksList || '<li>No company-level tasks yet</li>'}</ul>
+    </section>
+    <section class="project-list">
+      <h5>Projects</h5>
+      ${projectSections || '<p class="empty-projects">No projects yet.</p>'}
+    </section>
+  `;
+
+  grid.append(companyCard);
   ui.canvasView.innerHTML = '';
   const grid = document.createElement('div');
   grid.className = 'canvas-grid';

@@ -90,6 +90,32 @@ button, input, select, textarea {
 }
 .canvas-card h4 { margin: 0 0 .5rem 0; }
 .canvas-card ul { margin: 0; padding-left: 1.1rem; }
+.canvas-company-card {
+  grid-column: 1 / -1;
+}
+.canvas-company-card h5 {
+  margin: .2rem 0 .4rem;
+  color: var(--muted);
+  font-size: .9rem;
+}
+.project-list {
+  margin-top: .8rem;
+  display: grid;
+  gap: .7rem;
+}
+.project-container {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .6rem;
+  background: var(--surface-2);
+}
+.project-container h5 {
+  margin-top: 0;
+}
+.empty-projects {
+  margin: 0;
+  color: var(--muted);
+}
 .markdown strong { font-weight: 700; }
 .markdown em { font-style: italic; }
 .markdown code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: #00000033; padding: 0 .2rem; border-radius: 5px; }
