@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbit – Multi-Company Task Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Orbit</h1>
+    <div class="topbar-actions">
+      <button id="toggle-view" title="Toggle view (V)">Canvas View</button>
+      <button id="quick-add" title="New task (Ctrl/Cmd+N)">+ Task</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="Company and personal navigation">
+      <div class="sidebar-header">
+        <h2>Contexts</h2>
+        <button id="add-company">+ Company</button>
+      </div>
+      <ul id="node-list" class="node-list"></ul>
+      <div class="sharing">
+        <h3>Company Sharing</h3>
+        <input id="share-email" type="email" placeholder="collaborator@email.com" />
+        <button id="share-add">Grant access</button>
+        <ul id="share-list"></ul>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="toolbar">
+        <div>
+          <label for="project-select">Project</label>
+          <select id="project-select"></select>
+          <button id="add-project">+ Project</button>
+        </div>
+        <div>
+          <label for="task-filter">Filter</label>
+          <input id="task-filter" type="search" placeholder="Search tasks..." />
+        </div>
+      </div>
+
+      <div id="grid-view" class="view"></div>
+      <div id="canvas-view" class="view hidden"></div>
+    </section>
+  </main>
+
+  <template id="task-row-template">
+    <article class="task-row">
+      <div class="task-main">
+        <input class="task-done" type="checkbox" aria-label="Mark done" />
+        <button class="task-expand" aria-label="Toggle subtasks">▸</button>
+        <div class="task-title markdown"></div>
+      </div>
+      <div class="task-meta">
+        <input class="task-date" type="date" />
+        <select class="task-mode">
+          <option value="">mode</option>
+          <option value="lead">lead</option>
+          <option value="support">support</option>
+          <option value="stay out of way">stay out of way</option>
+        </select>
+        <button class="task-edit" title="Edit (E)">Edit</button>
+        <button class="task-subtask" title="Add subtask (Tab)">Subtask</button>
+        <button class="task-delete" title="Delete">Delete</button>
+      </div>
+    </article>
+  </template>
+
+  <dialog id="editor-dialog">
+    <form method="dialog" class="editor-form">
+      <label for="editor-title">Markdown title / description</label>
+      <textarea id="editor-title" rows="8" required></textarea>
+      <menu>
+        <button value="cancel">Cancel</button>
+        <button id="editor-save" value="default">Save</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
