@@ -1,20 +1,15 @@
-# Orbit MVP
+# File Token Counter
 
-A lightweight browser-based multi-company task manager focused on fast solo execution.
+A small browser tool to upload a file and estimate GPT token usage.
 
-## Features implemented
+## Supported file types
 
-- Company and Personal top-level contexts.
-- Projects under each context.
-- Tasks + nested subtasks with markdown titles.
-- Due date + operating mode (`lead`, `support`, `stay out of way`).
-- Grid and canvas views with instant toggle (`V`).
-- Keyboard shortcuts:
-  - `Ctrl/Cmd+N`: quick add task
-  - `Ctrl/Cmd+K`: quick switch context
-  - `V`: toggle view
-- Company-level sharing list (grant/revoke emails) and private personal node.
-- LocalStorage persistence for offline-first usage.
+- Markdown (`.md`, `.markdown`)
+- HTML (`.html`, `.htm`)
+- Plain text (`.txt`)
+- Excel workbooks (`.xlsx`)
+
+For XLSX files, each sheet is converted to CSV-like text before tokenization.
 
 ## Run
 
@@ -22,4 +17,10 @@ A lightweight browser-based multi-company task manager focused on fast solo exec
 python3 -m http.server 4173
 ```
 
-Open <http://localhost:4173>.
+Then open <http://localhost:4173>.
+
+## Notes
+
+- Uses `js-tiktoken` in the browser for token counting.
+- Uses SheetJS to parse XLSX files client-side.
+- No file content is uploaded to a backend.

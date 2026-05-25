@@ -1,129 +1,59 @@
 :root {
-  color-scheme: light dark;
-  --bg: #0e1116;
-  --surface: #171b22;
-  --surface-2: #1f2630;
-  --text: #ecf1f8;
-  --muted: #9ea9b8;
-  --accent: #5ba7ff;
-  --ok: #36c275;
-  --border: #2f3a4a;
+  --bg: #0d1117;
+  --panel: #161b22;
+  --text: #e6edf3;
+  --muted: #9ba7b4;
+  --accent: #58a6ff;
+  --border: #30363d;
 }
 
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: var(--bg);
   color: var(--text);
+  background: var(--bg);
 }
 
-.topbar {
-  height: 56px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.container {
+  max-width: 720px;
+  margin: 3rem auto;
   padding: 0 1rem;
 }
 
-button, input, select, textarea {
-  background: var(--surface-2);
-  color: var(--text);
+h1 { margin-bottom: .4rem; }
+.subtitle { color: var(--muted); margin-top: 0; }
+
+.card {
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.4rem 0.6rem;
-}
-
-.layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  min-height: calc(100vh - 56px);
-}
-
-.sidebar {
-  border-right: 1px solid var(--border);
-  padding: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.sidebar-header { display: flex; justify-content: space-between; align-items: center; }
-.node-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .4rem; }
-.node-list button { width: 100%; text-align: left; }
-.node-list button.active { border-color: var(--accent); color: var(--accent); }
-
-.content { padding: 1rem; overflow: auto; }
-.toolbar { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: .8rem; flex-wrap: wrap; }
-.view { display: grid; gap: .5rem; }
-.hidden { display: none; }
-
-.task-row {
-  border: 1px solid var(--border);
-  background: var(--surface);
-  border-radius: 10px;
-  padding: .6rem;
-  display: flex;
-  justify-content: space-between;
-  gap: .75rem;
-  align-items: center;
-}
-
-.task-main { display: flex; align-items: flex-start; gap: .5rem; min-width: 0; flex: 1; }
-.task-title { line-height: 1.35; overflow-wrap: anywhere; }
-.task-row.done { opacity: .6; }
-.task-row.done .task-title { text-decoration: line-through; }
-
-.task-meta { display: flex; gap: .3rem; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
-
-.canvas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: .8rem;
-}
-.canvas-card {
-  border: 1px solid var(--border);
-  background: var(--surface);
   border-radius: 12px;
-  padding: .7rem;
+  padding: 1rem;
+  margin-top: 1rem;
 }
-.canvas-card h4 { margin: 0 0 .5rem 0; }
-.canvas-card ul { margin: 0; padding-left: 1.1rem; }
-.canvas-company-card {
-  grid-column: 1 / -1;
-}
-.canvas-company-card h5 {
-  margin: .2rem 0 .4rem;
-  color: var(--muted);
-  font-size: .9rem;
-}
-.project-list {
-  margin-top: .8rem;
-  display: grid;
-  gap: .7rem;
-}
-.project-container {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: .6rem;
-  background: var(--surface-2);
-}
-.project-container h5 {
-  margin-top: 0;
-}
-.empty-projects {
-  margin: 0;
-  color: var(--muted);
-}
-.markdown strong { font-weight: 700; }
-.markdown em { font-style: italic; }
-.markdown code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: #00000033; padding: 0 .2rem; border-radius: 5px; }
-.markdown a { color: var(--accent); }
-.sharing ul { list-style: none; padding:0; margin:.5rem 0 0; display:grid; gap:.3rem }
-.sharing li { display:flex; justify-content:space-between; gap:.5rem; font-size:.9rem; color:var(--muted) }
 
-@media (max-width: 900px) {
-  .layout { grid-template-columns: 1fr; }
-  .sidebar { border-right: 0; border-bottom: 1px solid var(--border); }
+.label {
+  display: block;
+  margin: .8rem 0 .35rem;
+  color: var(--muted);
 }
+
+input, select, button {
+  width: 100%;
+  padding: .6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0f141b;
+  color: var(--text);
+}
+
+button {
+  margin-top: 1rem;
+  cursor: pointer;
+  background: var(--accent);
+  color: #061327;
+  font-weight: 700;
+}
+
+.status { min-height: 1.3rem; margin-bottom: 0; color: var(--muted); }
+.hidden { display: none; }
